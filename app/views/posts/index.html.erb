@@ -1,9 +1,18 @@
+<p>
+  <% if current_user %>
+    Hi <%= current_user.email %>
+    <%= link_to :bye!, destroy_user_session_path, method: :delete %>
+  <% else %>
+    <%= link_to "Sign In!", new_user_session_path %>
+  <% end %>
+</p>
+
 <% @posts.each do |post| %>
   <h2><%= post.title %></h2>
   <p><%= post.body %></p>
   <p>by: <%= post.user.email %></p>
 
-  <% if post.user == current_user %>
+  <% if current_user && current_user.can_edit?(post) %>
     <p><%= link_to "edit post", edit_post_path(post) %></p>
   <% end %>
 <% end %>

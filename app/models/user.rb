@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
 
   has_many :collaborations
   has_many :collaborative_posts, through: :collaborations, source: :post
+
+  def can_edit?(post)
+    post.user_id == id || collaborations.find_by(post_id: post.id)
+  end
 end
