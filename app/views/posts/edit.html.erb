@@ -11,5 +11,9 @@
     <%= f.text_area :body %><br>
   </p>
 
+  <p>
+    <%# collection_check_boxes :post, :collaborators, User.all, :id, :email %>
+  </p>
+
   <%= f.submit %>
 <% end %>
