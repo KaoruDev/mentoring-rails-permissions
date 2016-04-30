@@ -5,4 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :posts
+
+  has_many :collaborations
+  has_many :collaborative_posts, through: :collaborations, source: :post
 end
